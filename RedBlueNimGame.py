@@ -1,4 +1,5 @@
 import argparse
+import random
 
 class RedBlueNimGame:
     def __init__(self, num_red, num_blue, version, first_player, depth):
@@ -36,7 +37,7 @@ class RedBlueNimGame:
 
     def evaluate_board(self):
         return self.board["Red"] - self.board["Blue"]
-    
+
     def minimax(self, depth, alpha, beta, is_maximizing):
         if self.game_over():
             if self.version == "Standard":
@@ -45,7 +46,7 @@ class RedBlueNimGame:
                 return 1 if self.board["Blue"] == 0 else -1
         if depth == 0:
             return self.evaluate_board()
-        
+
         if is_maximizing:
             return self.maximize(depth, alpha, beta)
         else:
@@ -53,7 +54,9 @@ class RedBlueNimGame:
     
     def maximize(self, depth, alpha, beta):
         best_score = -float("inf")
-        for color, num_marbles in self.move_ordering():
+        moves = self.move_ordering()
+        random.shuffle(moves)
+        for color, num_marbles in moves:
             if self.board[color] >= num_marbles:
                 self.remove_marbles(color, num_marbles)
                 score = self.minimax(depth - 1, alpha, beta, False)
@@ -66,7 +69,9 @@ class RedBlueNimGame:
     
     def minimize(self, depth, alpha, beta):
         best_score = float("inf")
-        for color, num_marbles in self.move_ordering():
+        moves = self.move_ordering()
+        random.shuffle(moves)
+        for color, num_marbles in moves:
             if self.board[color] >= num_marbles:
                 self.remove_marbles(color, num_marbles)
                 score = self.minimax(depth - 1, alpha, beta, True)
@@ -86,7 +91,9 @@ class RedBlueNimGame:
     def best_move(self):
         best_move = None
         best_score = float("-inf")
-        for color, move in self.move_ordering():
+        moves = self.move_ordering()
+        random.shuffle(moves)
+        for color, move in moves:
             if self.board[color] >= move:
                 self.remove_marbles(color, move)
                 score = self.minimax(self.depth - 1, False, float("-inf"), float("inf"))
