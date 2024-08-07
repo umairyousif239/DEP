@@ -138,7 +138,7 @@ def main():
     parser.add_argument("num_red", type=int, help="Number of Red Marbles", nargs='?', default=10)
     parser.add_argument("num_blue", type=int, help="Number of Blue Marbles", nargs='?', default=10)
     parser.add_argument("--version", type=str, choices=["Standard", "Misere"], default="Standard", help="Game Type (Standard or Misere)")
-    parser.add_argument("--first_player", type=str, choices=["Human", "Computer"], default="Human", help="First Player (Human or Computer)")
+    parser.add_argument("--first_player", type=str, choices=["Human", "Computer"], default="Computer", help="First Player (Human or Computer)")
     parser.add_argument("--depth", type=int, default=10, help="Depth of Minimax Algorithm")
 
     args = parser.parse_args()
