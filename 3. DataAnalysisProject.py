@@ -1,8 +1,9 @@
+# Description: This script is used to perform data analysis on the iris dataset.
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Load the Iris dataset from Seaborn's built-in datasets
+# Load the iris dataset
 iris = sns.load_dataset('iris')
 
 # Show the initial few rows of the dataset
