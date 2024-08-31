@@ -1,8 +1,10 @@
+# Description: This file contains the resources for the RESTful API.
 from flask import request
 from flask_restful import Resource
 from flask_jwt_extended import create_access_token, jwt_required
 from models import db, UserModel, ItemModel
 
+# Define the resources
 class RegisterUser(Resource):
     def post(self):
         data = request.get_json()

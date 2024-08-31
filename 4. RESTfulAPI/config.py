@@ -1,5 +1,7 @@
+# Configuration for the Flask application.
 import os
 
+# Define the application directory
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY', 'b4b6d862cc8bb31049f4d1a75b530db07dc89d6a238464475f06f7c1b1842cf0')
     SQLALCHEMY_DATABASE_URI = 'sqlite:///database.db'
